@@ -8,20 +8,26 @@
 
 /* Begin PBXBuildFile section */
 		9A179C78206DBA7000DA51B0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A179C77206DBA7000DA51B0 /* AppDelegate.swift */; };
-		9A179C7A206DBA7000DA51B0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A179C79206DBA7000DA51B0 /* ViewController.swift */; };
+		9A179C7A206DBA7000DA51B0 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A179C79206DBA7000DA51B0 /* MainTabBarController.swift */; };
 		9A179C7D206DBA7000DA51B0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A179C7B206DBA7000DA51B0 /* Main.storyboard */; };
 		9A179C7F206DBA7000DA51B0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A179C7E206DBA7000DA51B0 /* Assets.xcassets */; };
 		9A179C82206DBA7000DA51B0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A179C80206DBA7000DA51B0 /* LaunchScreen.storyboard */; };
+		9ACF7E6A208C23B3008D99C2 /* FavoritesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ACF7E69208C23B3008D99C2 /* FavoritesController.swift */; };
+		9ACF7E6C208D199E008D99C2 /* PodcastsSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ACF7E6B208D199E008D99C2 /* PodcastsSearchController.swift */; };
+		9ACF7E70208D1A53008D99C2 /* Podcast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ACF7E6F208D1A53008D99C2 /* Podcast.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		9A179C74206DBA7000DA51B0 /* Podcast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Podcast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A179C77206DBA7000DA51B0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9A179C79206DBA7000DA51B0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		9A179C79206DBA7000DA51B0 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		9A179C7C206DBA7000DA51B0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9A179C7E206DBA7000DA51B0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9A179C81206DBA7000DA51B0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9A179C83206DBA7000DA51B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9ACF7E69208C23B3008D99C2 /* FavoritesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesController.swift; sourceTree = "<group>"; };
+		9ACF7E6B208D199E008D99C2 /* PodcastsSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastsSearchController.swift; sourceTree = "<group>"; };
+		9ACF7E6F208D1A53008D99C2 /* Podcast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Podcast.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +60,33 @@
 		9A179C76206DBA7000DA51B0 /* Podcast */ = {
 			isa = PBXGroup;
 			children = (
+				9ACF7E6E208D1A3B008D99C2 /* Model */,
 				9A179C77206DBA7000DA51B0 /* AppDelegate.swift */,
-				9A179C79206DBA7000DA51B0 /* ViewController.swift */,
+				9A179C79206DBA7000DA51B0 /* MainTabBarController.swift */,
+				9ACF7E6D208D19A3008D99C2 /* Controllers */,
+				9ACF7E69208C23B3008D99C2 /* FavoritesController.swift */,
 				9A179C7B206DBA7000DA51B0 /* Main.storyboard */,
 				9A179C7E206DBA7000DA51B0 /* Assets.xcassets */,
 				9A179C80206DBA7000DA51B0 /* LaunchScreen.storyboard */,
 				9A179C83206DBA7000DA51B0 /* Info.plist */,
 			);
 			path = Podcast;
+			sourceTree = "<group>";
+		};
+		9ACF7E6D208D19A3008D99C2 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				9ACF7E6B208D199E008D99C2 /* PodcastsSearchController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		9ACF7E6E208D1A3B008D99C2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9ACF7E6F208D1A53008D99C2 /* Podcast.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -91,7 +116,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "ashim Dahal";
 				TargetAttributes = {
 					9A179C73206DBA7000DA51B0 = {
@@ -136,8 +161,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A179C7A206DBA7000DA51B0 /* ViewController.swift in Sources */,
+				9A179C7A206DBA7000DA51B0 /* MainTabBarController.swift in Sources */,
 				9A179C78206DBA7000DA51B0 /* AppDelegate.swift in Sources */,
+				9ACF7E6A208C23B3008D99C2 /* FavoritesController.swift in Sources */,
+				9ACF7E6C208D199E008D99C2 /* PodcastsSearchController.swift in Sources */,
+				9ACF7E70208D1A53008D99C2 /* Podcast.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -177,6 +205,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -184,6 +213,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -234,6 +264,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -241,6 +272,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -275,6 +307,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8B42T7PNAX;
 				INFOPLIST_FILE = Podcast/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = home.Podcast;
@@ -289,6 +322,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8B42T7PNAX;
 				INFOPLIST_FILE = Podcast/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = home.Podcast;
