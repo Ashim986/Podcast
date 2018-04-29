@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class PodcastsSearchController: UITableViewController, UISearchBarDelegate {
     
@@ -36,12 +37,26 @@ class PodcastsSearchController: UITableViewController, UISearchBarDelegate {
         
         print(searchText)
         
+    // implement almofire to search itunes api upon text did change
+        let url = "https://yahoo.com"
+        Alamofire.request(url).responseData { (dataResponse) in
+            if let err = dataResponse.error {
+                print("Failed to connect to yahoo.com", err)
+            return
+            }
+            
+            guard let data = dataResponse.data else {return}
+            
+            let dummyString = String(data: data, encoding: .utf8)
+            print(dummyString ?? "")
+            
+        }
+        
     }
  
-    // MARK:- TableView
+    // MARK:- UITableView
     
     fileprivate func setupTableView(){
-        
         tableView.register(UITableViewCell.self , forCellReuseIdentifier: cellID)
     }
     
@@ -61,7 +76,6 @@ class PodcastsSearchController: UITableViewController, UISearchBarDelegate {
         cell.detailTextLabel?.text = podcast.artistName
         cell.imageView?.image = #imageLiteral(resourceName: "appicon")
         cell.textLabel?.numberOfLines = 0
-        
         
         return cell
     }
