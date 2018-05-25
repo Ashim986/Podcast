@@ -15,6 +15,16 @@
 		9ACF7E6A208C23B3008D99C2 /* FavoritesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ACF7E69208C23B3008D99C2 /* FavoritesController.swift */; };
 		9ACF7E6C208D199E008D99C2 /* PodcastsSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ACF7E6B208D199E008D99C2 /* PodcastsSearchController.swift */; };
 		9ACF7E70208D1A53008D99C2 /* Podcast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ACF7E6F208D1A53008D99C2 /* Podcast.swift */; };
+		C5DE544E2096A8C00099F151 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5DE544D2096A8C00099F151 /* APIService.swift */; };
+		C5DE54512096BB430099F151 /* PodcastCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5DE54502096BB430099F151 /* PodcastCell.xib */; };
+		C5DE54532096BE730099F151 /* PodcastCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5DE54522096BE730099F151 /* PodcastCell.swift */; };
+		C5E0C06B20AE2728008AE7AC /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C5E0C06A20AE2728008AE7AC /* Default-568h@2x.png */; };
+		C5E0C06D20AE8ED9008AE7AC /* EpishodController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E0C06C20AE8ED9008AE7AC /* EpishodController.swift */; };
+		C5E0C06F20B1BC9C008AE7AC /* Epishod.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E0C06E20B1BC9C008AE7AC /* Epishod.swift */; };
+		C5E0C07220B21021008AE7AC /* EpishodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E0C07020B21021008AE7AC /* EpishodCell.swift */; };
+		C5E0C07320B21021008AE7AC /* EpishodCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5E0C07120B21021008AE7AC /* EpishodCell.xib */; };
+		C5E0C07520B4F19D008AE7AC /* ExtensionString.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E0C07420B4F19D008AE7AC /* ExtensionString.swift */; };
+		C5E0C07820B5220D008AE7AC /* ExtensionRSSFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E0C07720B5220D008AE7AC /* ExtensionRSSFeed.swift */; };
 		EE498ACCADB59AC76863FFAB /* Pods_Podcast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 546F5E87E36286D8CEB31780 /* Pods_Podcast.framework */; };
 /* End PBXBuildFile section */
 
@@ -32,6 +42,16 @@
 		9ACF7E69208C23B3008D99C2 /* FavoritesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesController.swift; sourceTree = "<group>"; };
 		9ACF7E6B208D199E008D99C2 /* PodcastsSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastsSearchController.swift; sourceTree = "<group>"; };
 		9ACF7E6F208D1A53008D99C2 /* Podcast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Podcast.swift; sourceTree = "<group>"; };
+		C5DE544D2096A8C00099F151 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		C5DE54502096BB430099F151 /* PodcastCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PodcastCell.xib; sourceTree = "<group>"; };
+		C5DE54522096BE730099F151 /* PodcastCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastCell.swift; sourceTree = "<group>"; };
+		C5E0C06A20AE2728008AE7AC /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		C5E0C06C20AE8ED9008AE7AC /* EpishodController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpishodController.swift; sourceTree = "<group>"; };
+		C5E0C06E20B1BC9C008AE7AC /* Epishod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Epishod.swift; sourceTree = "<group>"; };
+		C5E0C07020B21021008AE7AC /* EpishodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpishodCell.swift; sourceTree = "<group>"; };
+		C5E0C07120B21021008AE7AC /* EpishodCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EpishodCell.xib; sourceTree = "<group>"; };
+		C5E0C07420B4F19D008AE7AC /* ExtensionString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionString.swift; sourceTree = "<group>"; };
+		C5E0C07720B5220D008AE7AC /* ExtensionRSSFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionRSSFeed.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +69,7 @@
 		9A179C6B206DBA7000DA51B0 = {
 			isa = PBXGroup;
 			children = (
+				C5E0C06A20AE2728008AE7AC /* Default-568h@2x.png */,
 				9A179C76206DBA7000DA51B0 /* Podcast */,
 				9A179C75206DBA7000DA51B0 /* Products */,
 				F58E2B8E40992D200B369A50 /* Pods */,
@@ -67,6 +88,8 @@
 		9A179C76206DBA7000DA51B0 /* Podcast */ = {
 			isa = PBXGroup;
 			children = (
+				C5DE544F2096BB060099F151 /* Views */,
+				C5DE544C2096A8900099F151 /* API */,
 				9ACF7E6E208D1A3B008D99C2 /* Model */,
 				9A179C77206DBA7000DA51B0 /* AppDelegate.swift */,
 				9A179C79206DBA7000DA51B0 /* MainTabBarController.swift */,
@@ -76,6 +99,7 @@
 				9A179C7E206DBA7000DA51B0 /* Assets.xcassets */,
 				9A179C80206DBA7000DA51B0 /* LaunchScreen.storyboard */,
 				9A179C83206DBA7000DA51B0 /* Info.plist */,
+				C5E0C07620B4F1A7008AE7AC /* Extension */,
 			);
 			path = Podcast;
 			sourceTree = "<group>";
@@ -84,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				9ACF7E6B208D199E008D99C2 /* PodcastsSearchController.swift */,
+				C5E0C06C20AE8ED9008AE7AC /* EpishodController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -92,8 +117,37 @@
 			isa = PBXGroup;
 			children = (
 				9ACF7E6F208D1A53008D99C2 /* Podcast.swift */,
+				C5E0C06E20B1BC9C008AE7AC /* Epishod.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		C5DE544C2096A8900099F151 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				C5DE544D2096A8C00099F151 /* APIService.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		C5DE544F2096BB060099F151 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C5DE54502096BB430099F151 /* PodcastCell.xib */,
+				C5DE54522096BE730099F151 /* PodcastCell.swift */,
+				C5E0C07020B21021008AE7AC /* EpishodCell.swift */,
+				C5E0C07120B21021008AE7AC /* EpishodCell.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		C5E0C07620B4F1A7008AE7AC /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				C5E0C07420B4F19D008AE7AC /* ExtensionString.swift */,
+				C5E0C07720B5220D008AE7AC /* ExtensionRSSFeed.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		C9DA2AC697985D3E80D1064C /* Frameworks */ = {
@@ -177,6 +231,9 @@
 			files = (
 				9A179C82206DBA7000DA51B0 /* LaunchScreen.storyboard in Resources */,
 				9A179C7F206DBA7000DA51B0 /* Assets.xcassets in Resources */,
+				C5E0C07320B21021008AE7AC /* EpishodCell.xib in Resources */,
+				C5DE54512096BB430099F151 /* PodcastCell.xib in Resources */,
+				C5E0C06B20AE2728008AE7AC /* Default-568h@2x.png in Resources */,
 				9A179C7D206DBA7000DA51B0 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -207,10 +264,14 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Podcast/Pods-Podcast-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
+				"${BUILT_PRODUCTS_DIR}/FeedKit/FeedKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FeedKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -244,9 +305,16 @@
 			files = (
 				9A179C7A206DBA7000DA51B0 /* MainTabBarController.swift in Sources */,
 				9A179C78206DBA7000DA51B0 /* AppDelegate.swift in Sources */,
+				C5E0C07220B21021008AE7AC /* EpishodCell.swift in Sources */,
+				C5E0C06D20AE8ED9008AE7AC /* EpishodController.swift in Sources */,
 				9ACF7E6A208C23B3008D99C2 /* FavoritesController.swift in Sources */,
 				9ACF7E6C208D199E008D99C2 /* PodcastsSearchController.swift in Sources */,
+				C5E0C07820B5220D008AE7AC /* ExtensionRSSFeed.swift in Sources */,
+				C5E0C06F20B1BC9C008AE7AC /* Epishod.swift in Sources */,
+				C5E0C07520B4F19D008AE7AC /* ExtensionString.swift in Sources */,
+				C5DE544E2096A8C00099F151 /* APIService.swift in Sources */,
 				9ACF7E70208D1A53008D99C2 /* Podcast.swift in Sources */,
+				C5DE54532096BE730099F151 /* PodcastCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

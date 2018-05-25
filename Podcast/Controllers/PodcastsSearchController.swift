@@ -11,10 +11,8 @@ import Alamofire
 
 class PodcastsSearchController: UITableViewController, UISearchBarDelegate {
     
-    let dummyPodcasts = [
-        Podcast(name: "Lets build that app", artistName: "Brian Voong"),
-        Podcast(name: "This is my app", artistName: "Ashim Dahal")
-    ]
+    var podcasts = [Podcast]()
+    
     let cellID = "cellID"
     let searchController = UISearchController(searchResultsController: nil)
     
@@ -23,10 +21,19 @@ class PodcastsSearchController: UITableViewController, UISearchBarDelegate {
         setupSearchBar()
         setupTableView()
     }
+    //MARK:- setup works
+    fileprivate func setupTableView(){
+        
+        tableView.tableFooterView = UIView()
+        
+        let nib = UINib(nibName: "PodcastCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: cellID)
+    }
     
     //MARK:- SearchBar delegate methods
     
     fileprivate func setupSearchBar() {
+        self.definesPresentationContext = true
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
         searchController.dimsBackgroundDuringPresentation = false
@@ -35,47 +42,53 @@ class PodcastsSearchController: UITableViewController, UISearchBarDelegate {
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
-        print(searchText)
+//     implement almofire to search itunes api upon text did change
         
-    // implement almofire to search itunes api upon text did change
-        let url = "https://yahoo.com"
-        Alamofire.request(url).responseData { (dataResponse) in
-            if let err = dataResponse.error {
-                print("Failed to connect to yahoo.com", err)
-            return
-            }
-            
-            guard let data = dataResponse.data else {return}
-            
-            let dummyString = String(data: data, encoding: .utf8)
-            print(dummyString ?? "")
-            
+        APIService.shared.fetchPodcasts(searchText: searchText) { (podcasts) in
+            self.podcasts = podcasts
+            self.tableView.reloadData()
         }
-        
     }
- 
+    
     // MARK:- UITableView
     
-    fileprivate func setupTableView(){
-        tableView.register(UITableViewCell.self , forCellReuseIdentifier: cellID)
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let label = UILabel()
+        label.text = "Please enter a Search Term"
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+        return label
+    }
+    
+    
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        //ternary operator
+        return self.podcasts.count > 0 ? 0 : 250
+    }
+    
+    
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let epishodController = EpishodController()
+        epishodController.podcast = self.podcasts[indexPath.row]
+        navigationController?.pushViewController(epishodController, animated: true)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dummyPodcasts.count
+        return podcasts.count
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60
+        return 132
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let podcast = dummyPodcasts[indexPath.row]
-        let cell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: cellID)
         
-        cell.textLabel?.text = podcast.name
-        cell.detailTextLabel?.text = podcast.artistName
-        cell.imageView?.image = #imageLiteral(resourceName: "appicon")
-        cell.textLabel?.numberOfLines = 0
+        let podcast = podcasts[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! PodcastCell
+        cell.podcast = podcast
         
         return cell
     }

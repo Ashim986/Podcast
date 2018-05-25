@@ -7,5 +7,7 @@ target 'Podcast' do
 
   # Pods for Podcast
 pod 'Alamofire'
+pod 'AlamofireImage'
+pod 'FeedKit' , '7.0.1'
 
 end

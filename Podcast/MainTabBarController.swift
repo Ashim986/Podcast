@@ -15,7 +15,6 @@ class MainTabBarController: UITabBarController {
         super.viewDidLoad()
         UINavigationBar.appearance().prefersLargeTitles = true
         tabBar.tintColor = .purple
-    
         setupViewControllers()
         
     }
