@@ -61,12 +61,12 @@ class PlayerDetailView: UIView {
         // this method allow when player slowly updates itself in perodic interval
         
         let interval = CMTimeMake(1, 2)
-        player.addPeriodicTimeObserver(forInterval: interval, queue: .main) { (time) in
+        player.addPeriodicTimeObserver(forInterval: interval, queue: .main) { [weak self](time) in
           
-            self.currentTimeLabel.text = time.toDisplayString()
-            let durationTime = self.player.currentItem?.duration.toDisplayString()
-            self.durationLabel.text = durationTime
-            self.updateCurrentTimeSlider()
+            self?.currentTimeLabel.text = time.toDisplayString()
+            let durationTime = self?.player.currentItem?.duration.toDisplayString()
+            self?.durationLabel.text = durationTime
+            self?.updateCurrentTimeSlider()
         }
         
     }
@@ -90,8 +90,8 @@ class PlayerDetailView: UIView {
         // this allow monitoring of bigining of player whenever it starts
         let time = CMTimeMake(1, 3)
         let times = [NSValue(time:time)]
-        player.addBoundaryTimeObserver(forTimes: times, queue: .main) {
-            self.enlargeEpishodImage()
+        player.addBoundaryTimeObserver(forTimes: times, queue: .main) { [weak self] in
+            self?.enlargeEpishodImage()
         }
     }
     

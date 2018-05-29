@@ -12,7 +12,7 @@ import Alamofire
 class PodcastsSearchController: UITableViewController, UISearchBarDelegate {
     
     var podcasts = [Podcast]()
-    
+    var timer : Timer? // optional allow it to be nil at the begining of time
     let cellID = "cellID"
     let searchController = UISearchController(searchResultsController: nil)
     
@@ -43,14 +43,20 @@ class PodcastsSearchController: UITableViewController, UISearchBarDelegate {
         
     }
 
+    
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
 //     implement almofire to search itunes api upon text did change
+        timer?.invalidate()
+        timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { (timer) in
+            APIService.shared.fetchPodcasts(searchText: searchText) { (podcasts) in
+                self.podcasts = podcasts
+                self.tableView.reloadData()
+            }
+            
+        })
         
-        APIService.shared.fetchPodcasts(searchText: searchText) { (podcasts) in
-            self.podcasts = podcasts
-            self.tableView.reloadData()
-        }
     }
     
     // MARK:- UITableView
