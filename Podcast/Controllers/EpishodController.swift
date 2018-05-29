@@ -48,6 +48,16 @@ class EpishodController: UITableViewController {
         return epishods.count
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let epishod = epishods[indexPath.row]
+        let window = UIApplication.shared.keyWindow
+        let playerDetailView = Bundle.main.loadNibNamed("PlayerDetailsView", owner: self, options: nil)?.first as! PlayerDetailView
+        playerDetailView.frame = self.view.frame
+        playerDetailView.epishod = epishod
+        window?.addSubview(playerDetailView)
+  
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! EpishodCell
         let epishod = epishods[indexPath.row]

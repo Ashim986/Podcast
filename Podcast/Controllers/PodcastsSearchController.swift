@@ -20,6 +20,8 @@ class PodcastsSearchController: UITableViewController, UISearchBarDelegate {
         super.viewDidLoad()
         setupSearchBar()
         setupTableView()
+        // TODO:- remove this line when application finishes
+        searchBar(searchController.searchBar, textDidChange: "Voong")
     }
     //MARK:- setup works
     fileprivate func setupTableView(){
@@ -38,6 +40,7 @@ class PodcastsSearchController: UITableViewController, UISearchBarDelegate {
         navigationItem.hidesSearchBarWhenScrolling = false
         searchController.dimsBackgroundDuringPresentation = false
         searchController.searchBar.delegate = self
+        
     }
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -60,15 +63,13 @@ class PodcastsSearchController: UITableViewController, UISearchBarDelegate {
         return label
     }
     
-    
-    
+   
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         //ternary operator
         return self.podcasts.count > 0 ? 0 : 250
     }
     
-    
-    
+  
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let epishodController = EpishodController()

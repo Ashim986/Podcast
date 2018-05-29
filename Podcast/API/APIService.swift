@@ -53,10 +53,7 @@ class APIService {
             
             let epishods = feed.toEpishod()
             completionHandler(epishods)
-//            self.epishods = feed.toEpishod()
-//            DispatchQueue.main.async {
-//                self.tableView.reloadData()
-//            }
+
         })
         
         
