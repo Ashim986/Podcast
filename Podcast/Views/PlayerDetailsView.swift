@@ -85,6 +85,9 @@ class PlayerDetailView: UIView {
         // prepare receiver for service after nib file has been loaded.
         // allow additional functionality after view load from interface build archive or nib file
         super.awakeFromNib()
+        
+        addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapMaximize)))
+        
         observePlayerCurrentTime()
         
         // this allow monitoring of bigining of player whenever it starts
@@ -95,12 +98,29 @@ class PlayerDetailView: UIView {
         }
     }
     
+    @objc func handleTapMaximize(){
+        
+        print("taping to maximize")
+        
+        let mainTabBarController = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController
+        mainTabBarController?.maximizePlayerDetails(epishod: nil)
+        
+    }
+    
+    static func initFromNib() -> PlayerDetailView {
+        let playerDetailView = Bundle.main.loadNibNamed("PlayerDetailsView", owner: self, options: nil)?.first as! PlayerDetailView
+        
+        return playerDetailView
+    }
     
     
     //MARK:- IB actions and outlets
     
     @IBAction func handleDismiss(_ sender: Any) {
-        self.removeFromSuperview()
+//        self.removeFromSuperview()
+        let mainTabBarController = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController
+        mainTabBarController?.minimizePlayerDetails()
+        
        
     }
     @IBAction func handleRewind(_ sender: Any) {

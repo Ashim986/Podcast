@@ -22,6 +22,7 @@ class PodcastsSearchController: UITableViewController, UISearchBarDelegate {
         setupTableView()
         // TODO:- remove this line when application finishes
         searchBar(searchController.searchBar, textDidChange: "Voong")
+        
     }
     //MARK:- setup works
     fileprivate func setupTableView(){
@@ -40,6 +41,7 @@ class PodcastsSearchController: UITableViewController, UISearchBarDelegate {
         navigationItem.hidesSearchBarWhenScrolling = false
         searchController.dimsBackgroundDuringPresentation = false
         searchController.searchBar.delegate = self
+        searchController.searchBar.placeholder = "Podcasts"
         
     }
 
@@ -62,13 +64,50 @@ class PodcastsSearchController: UITableViewController, UISearchBarDelegate {
     // MARK:- UITableView
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let label = UILabel()
-        label.text = "Please enter a Search Term"
-        label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
-        return label
+        
+        let containerView = setupHeaderViewAndConstraint(tableView: tableView)
+        return containerView
     }
     
+    let currentlySearchingLabel : UILabel = {
+        let label = UILabel()
+        label.text = "Currently Searching"
+        label.textColor = .black
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+        
+    }()
+    
+    let activityIndicatorView : UIActivityIndicatorView = {
+        let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+        activityIndicator.color = .darkGray
+        activityIndicator.startAnimating()
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        return activityIndicator
+    }()
+    
+    
+    fileprivate func setupHeaderViewAndConstraint(tableView : UITableView) -> UIView{
+        
+        let containerView = UIView()
+        containerView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.addSubview(containerView)
+        containerView.addSubview(currentlySearchingLabel)
+        containerView.addSubview(activityIndicatorView)
+        
+        NSLayoutConstraint.activate([containerView.topAnchor.constraint(equalTo: tableView.topAnchor),containerView.leftAnchor.constraint(equalTo: tableView.leftAnchor),containerView.widthAnchor.constraint(equalToConstant: tableView.frame.width), containerView.heightAnchor.constraint(equalToConstant: 200)])
+        
+        NSLayoutConstraint.activate([activityIndicatorView.topAnchor.constraint(equalTo: containerView.topAnchor, constant : 10 ), activityIndicatorView.centerXAnchor.constraint(equalTo: view.centerXAnchor), activityIndicatorView.heightAnchor.constraint(equalToConstant: 60),activityIndicatorView.widthAnchor.constraint(equalToConstant: 60) ])
+        
+        
+        NSLayoutConstraint.activate([currentlySearchingLabel.topAnchor.constraint(equalTo: activityIndicatorView.bottomAnchor, constant : 10),currentlySearchingLabel.leftAnchor.constraint(equalTo: containerView.leftAnchor),currentlySearchingLabel.rightAnchor.constraint(equalTo: containerView.rightAnchor), currentlySearchingLabel.heightAnchor.constraint(equalToConstant: 40)])
+        
+        return containerView
+        
+    }
+
    
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         //ternary operator
