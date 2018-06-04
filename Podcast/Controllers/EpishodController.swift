@@ -61,9 +61,8 @@ class EpishodController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let mainTabBarController = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController
         let epishod = epishods[indexPath.row]
-        mainTabBarController?.maximizePlayerDetails(epishod: epishod)
+        UIApplication.mainTabBarController()?.maximizePlayerDetails(epishod: epishod)
 
     }
     

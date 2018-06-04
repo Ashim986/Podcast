@@ -16,6 +16,7 @@ class PlayerDetailView: UIView {
     
     var epishod : Epishod! {
         didSet{
+            miniTitleLabel.text = epishod.title
             titleLabel.text = epishod.title
             autherLabel.text = epishod.author
             guard let epishodImageurl = epishod.imageUrl else {
@@ -24,6 +25,7 @@ class PlayerDetailView: UIView {
             playEpishod()
             guard let url = URL(string: epishodImageurl) else {return}
             epishodImageView.af_setImage(withURL: url)
+            miniEpishodImageView.af_setImage(withURL: url)
         }
     }
     let player : AVPlayer = {
@@ -42,11 +44,9 @@ class PlayerDetailView: UIView {
     }
     
     fileprivate func enlargeEpishodImage(){
-        
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             
             self.epishodImageView.transform = .identity
-            
         })
     }
     
@@ -54,7 +54,6 @@ class PlayerDetailView: UIView {
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             self.epishodImageView.transform = self.shrunkTransform
         })
-        
     }
     
     fileprivate func observePlayerCurrentTime() {
@@ -62,32 +61,66 @@ class PlayerDetailView: UIView {
         
         let interval = CMTimeMake(1, 2)
         player.addPeriodicTimeObserver(forInterval: interval, queue: .main) { [weak self](time) in
-          
             self?.currentTimeLabel.text = time.toDisplayString()
+            self?.miniCurrentTimeLabel.text = time.toDisplayString()
+            
             let durationTime = self?.player.currentItem?.duration.toDisplayString()
             self?.durationLabel.text = durationTime
+            self?.miniDurationTimeLabel.text = durationTime
             self?.updateCurrentTimeSlider()
         }
         
     }
+    
+    
     fileprivate func updateCurrentTimeSlider(){
         let currentTimeSeconds = CMTimeGetSeconds(player.currentTime())
         let durationTimeSeconds = CMTimeGetSeconds(player.currentItem?.duration ?? CMTimeMake(1, 1) )
         let percentage = currentTimeSeconds / durationTimeSeconds
-        
         self.currentTimeSlider.value = Float(percentage)
-        
         
     }
     
+    var panGesture : UIPanGestureRecognizer!
+    
+    fileprivate func setupGesture() {
+        addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapMaximize)))
+        panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
+        miniPlayerView.addGestureRecognizer(panGesture)
+        
+        maximizedStackView.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handleDismissalPan)))
+        
+    }
+    
+    @objc func handleDismissalPan(gesture : UIPanGestureRecognizer){
+        
+        let translation = gesture.translation(in: self.superview)
+        let velocity = gesture.velocity(in: self.superview)
+        if gesture.state == .changed {
+           
+            maximizedStackView.transform = CGAffineTransform(translationX: 0, y: translation.y)
+          
+            
+        }else if gesture.state == .ended {
+            
+            UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+                
+                self.maximizedStackView.transform = .identity
+                
+                if translation.y > 80 || velocity.y > 600{
+                    UIApplication.mainTabBarController()?.minimizePlayerDetails()
+                }
+            })
+        }
+        
+    }
     
     override func awakeFromNib() {
         // prepare receiver for service after nib file has been loaded.
         // allow additional functionality after view load from interface build archive or nib file
         super.awakeFromNib()
         
-        addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapMaximize)))
-        
+        setupGesture()
         observePlayerCurrentTime()
         
         // this allow monitoring of bigining of player whenever it starts
@@ -98,15 +131,6 @@ class PlayerDetailView: UIView {
         }
     }
     
-    @objc func handleTapMaximize(){
-        
-        print("taping to maximize")
-        
-        let mainTabBarController = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController
-        mainTabBarController?.maximizePlayerDetails(epishod: nil)
-        
-    }
-    
     static func initFromNib() -> PlayerDetailView {
         let playerDetailView = Bundle.main.loadNibNamed("PlayerDetailsView", owner: self, options: nil)?.first as! PlayerDetailView
         
@@ -115,11 +139,42 @@ class PlayerDetailView: UIView {
     
     
     //MARK:- IB actions and outlets
+
+    @IBAction func miniSlider(_ sender: Any) {
+        let percentage = miniSliderLabel.value
+        handleSliderChange(percentage: percentage, miniSlider: true)
+    }
+    @IBOutlet weak var miniSliderLabel: UISlider!
+    
+    @IBOutlet weak var miniCurrentTimeLabel: UILabel!
+    @IBOutlet weak var miniDurationTimeLabel: UILabel!
+    
+    @IBOutlet weak var miniPlayerView: UIStackView!
+    @IBOutlet weak var maximizedStackView: UIStackView!
+    
+    @IBOutlet weak var miniEpishodImageView: UIImageView!
+    @IBOutlet weak var miniPlayPauseButton: UIButton! {
+        didSet {
+            miniPlayPauseButton.addTarget(self, action: #selector(handlePlayPause), for: .touchUpInside)
+            miniPlayPauseButton.imageEdgeInsets = UIEdgeInsetsMake(10, 5, 10, 5)
+        }
+    }
+    @IBOutlet weak var miniTitleLabel: UILabel!{
+        didSet {
+            miniTitleLabel.numberOfLines = 2
+        }
+    }
+    @IBOutlet weak var miniFastForward: UIButton! {
+        didSet{
+            miniFastForward.addTarget(self, action: #selector(handleFastForward(_:)), for: .touchUpInside)
+            miniFastForward.imageEdgeInsets = UIEdgeInsetsMake(10, 5, 10, 5)
+        }
+    }
+    
     
     @IBAction func handleDismiss(_ sender: Any) {
 //        self.removeFromSuperview()
-        let mainTabBarController = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController
-        mainTabBarController?.minimizePlayerDetails()
+        UIApplication.mainTabBarController()?.minimizePlayerDetails()
         
        
     }
@@ -143,23 +198,32 @@ class PlayerDetailView: UIView {
         player.volume = sender.value
     }
     
-    @IBAction func handleCurrentTimeSliderChange(_ sender: Any){
-        
-        let percentage = currentTimeSlider.value
-      
+    fileprivate func handleSliderChange(percentage : Float, miniSlider : Bool){
         guard let duration = player.currentItem?.duration else {return}
         let durationInSeconds = CMTimeGetSeconds(duration)
         let seekTimeInSeconds = Float64(percentage) * durationInSeconds
         let seekTime = CMTimeMakeWithSeconds(seekTimeInSeconds, Int32(NSEC_PER_SEC))
         player.seek(to: seekTime)
         
+        if miniSlider {
+            currentTimeSlider.value = percentage
+        }else{
+            miniSliderLabel.value = percentage
+        }
+        
     }
+    
+    @IBAction func handleCurrentTimeSliderChange(_ sender: Any){
+        let percentage = currentTimeSlider.value
+        handleSliderChange(percentage: percentage, miniSlider: false)
+    }
+
 
     @IBOutlet weak var currentTimeLabel: UILabel!
     @IBOutlet weak var durationLabel: UILabel!
     
     @IBOutlet weak var currentTimeSlider: UISlider!
-    
+
     @IBOutlet weak var playPauseButton: UIButton! {
         didSet {
             playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
@@ -169,7 +233,6 @@ class PlayerDetailView: UIView {
     
     @IBOutlet weak var epishodImageView: UIImageView! {
         didSet{
-           
             epishodImageView.transform = shrunkTransform
             epishodImageView.layer.cornerRadius = 10
             epishodImageView.clipsToBounds = true
@@ -187,12 +250,15 @@ class PlayerDetailView: UIView {
         if player.timeControlStatus == .paused {
             player.play()
             playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
+            miniPlayPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
             enlargeEpishodImage()
             
         }else {
             player.pause()
             playPauseButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
+            miniPlayPauseButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
             shrinkEpishodView()
         }
     }
 }
+

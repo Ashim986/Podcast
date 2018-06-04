@@ -17,6 +17,8 @@
 		9ACF7E70208D1A53008D99C2 /* Podcast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ACF7E6F208D1A53008D99C2 /* Podcast.swift */; };
 		C51760E720B7D6D2001A3C7F /* PlayerDetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C51760E620B7D6D2001A3C7F /* PlayerDetailsView.xib */; };
 		C51760E920B8528C001A3C7F /* PlayerDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51760E820B8528C001A3C7F /* PlayerDetailsView.swift */; };
+		C54A4F6920C4751200A863F6 /* PlayerDetailView+Gesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54A4F6820C4751200A863F6 /* PlayerDetailView+Gesture.swift */; };
+		C55E098220C4913800C74D95 /* ExtensionUIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55E098120C4913800C74D95 /* ExtensionUIApplication.swift */; };
 		C5DE544E2096A8C00099F151 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5DE544D2096A8C00099F151 /* APIService.swift */; };
 		C5DE54512096BB430099F151 /* PodcastCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5DE54502096BB430099F151 /* PodcastCell.xib */; };
 		C5DE54532096BE730099F151 /* PodcastCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5DE54522096BE730099F151 /* PodcastCell.swift */; };
@@ -47,6 +49,8 @@
 		9ACF7E6F208D1A53008D99C2 /* Podcast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Podcast.swift; sourceTree = "<group>"; };
 		C51760E620B7D6D2001A3C7F /* PlayerDetailsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayerDetailsView.xib; sourceTree = "<group>"; };
 		C51760E820B8528C001A3C7F /* PlayerDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerDetailsView.swift; sourceTree = "<group>"; };
+		C54A4F6820C4751200A863F6 /* PlayerDetailView+Gesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlayerDetailView+Gesture.swift"; sourceTree = "<group>"; };
+		C55E098120C4913800C74D95 /* ExtensionUIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionUIApplication.swift; sourceTree = "<group>"; };
 		C5DE544D2096A8C00099F151 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		C5DE54502096BB430099F151 /* PodcastCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PodcastCell.xib; sourceTree = "<group>"; };
 		C5DE54522096BE730099F151 /* PodcastCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastCell.swift; sourceTree = "<group>"; };
@@ -128,6 +132,15 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		C54A4F6A20C4752000A863F6 /* Player Detail View */ = {
+			isa = PBXGroup;
+			children = (
+				C51760E820B8528C001A3C7F /* PlayerDetailsView.swift */,
+				C54A4F6820C4751200A863F6 /* PlayerDetailView+Gesture.swift */,
+			);
+			path = "Player Detail View";
+			sourceTree = "<group>";
+		};
 		C5DE544C2096A8900099F151 /* API */ = {
 			isa = PBXGroup;
 			children = (
@@ -143,7 +156,7 @@
 				C5DE54522096BE730099F151 /* PodcastCell.swift */,
 				C5E0C07020B21021008AE7AC /* EpishodCell.swift */,
 				C5E0C07120B21021008AE7AC /* EpishodCell.xib */,
-				C51760E820B8528C001A3C7F /* PlayerDetailsView.swift */,
+				C54A4F6A20C4752000A863F6 /* Player Detail View */,
 				C51760E620B7D6D2001A3C7F /* PlayerDetailsView.xib */,
 			);
 			path = Views;
@@ -155,6 +168,7 @@
 				C5E0C07420B4F19D008AE7AC /* ExtensionString.swift */,
 				C5F62B1020BC77D400260035 /* ExtensionCMTime.swift */,
 				C5E0C07720B5220D008AE7AC /* ExtensionRSSFeed.swift */,
+				C55E098120C4913800C74D95 /* ExtensionUIApplication.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -316,8 +330,10 @@
 				9A179C7A206DBA7000DA51B0 /* MainTabBarController.swift in Sources */,
 				9A179C78206DBA7000DA51B0 /* AppDelegate.swift in Sources */,
 				C5F62B1120BC77D400260035 /* ExtensionCMTime.swift in Sources */,
+				C54A4F6920C4751200A863F6 /* PlayerDetailView+Gesture.swift in Sources */,
 				C51760E920B8528C001A3C7F /* PlayerDetailsView.swift in Sources */,
 				C5E0C07220B21021008AE7AC /* EpishodCell.swift in Sources */,
+				C55E098220C4913800C74D95 /* ExtensionUIApplication.swift in Sources */,
 				C5E0C06D20AE8ED9008AE7AC /* EpishodController.swift in Sources */,
 				9ACF7E6A208C23B3008D99C2 /* FavoritesController.swift in Sources */,
 				9ACF7E6C208D199E008D99C2 /* PodcastsSearchController.swift in Sources */,
@@ -471,6 +487,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8B42T7PNAX;
 				INFOPLIST_FILE = Podcast/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = home.Podcast;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -487,6 +504,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8B42T7PNAX;
 				INFOPLIST_FILE = Podcast/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = home.Podcast;
 				PRODUCT_NAME = "$(TARGET_NAME)";
