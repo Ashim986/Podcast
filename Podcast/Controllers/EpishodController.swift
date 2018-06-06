@@ -62,7 +62,7 @@ class EpishodController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let epishod = epishods[indexPath.row]
-        UIApplication.mainTabBarController()?.maximizePlayerDetails(epishod: epishod)
+        UIApplication.mainTabBarController()?.maximizePlayerDetails(epishod: epishod, playlistEpishods : self.epishods)
 
     }
     

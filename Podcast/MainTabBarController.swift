@@ -38,7 +38,7 @@ class MainTabBarController: UITabBarController {
     
     }
     
-    func maximizePlayerDetails(epishod : Epishod?) {
+    func maximizePlayerDetails(epishod : Epishod? , playlistEpishods : [Epishod] = []) {
         minimizedTopAnchorConstraint.isActive = false
         maximizedTopAnchorConstraint.isActive = true
         maximizedTopAnchorConstraint.constant = 0
@@ -54,6 +54,7 @@ class MainTabBarController: UITabBarController {
         if epishod != nil {
              playerDetailView.epishod = epishod
         }
+        playerDetailView.playlistEpishod = playlistEpishods
       
     }
     

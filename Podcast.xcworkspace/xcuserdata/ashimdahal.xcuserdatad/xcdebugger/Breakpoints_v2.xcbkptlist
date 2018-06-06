@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Podcast/Views/Player Detail View/PlayerDetailsView.swift"
-            timestampString = "549776176.205289"
+            timestampString = "549989753.835312"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "193"
-            endingLineNumber = "193"
+            startingLineNumber = "343"
+            endingLineNumber = "343"
             landmarkName = "seekToCurrentTime(delta:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -26,12 +26,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Podcast/Views/Player Detail View/PlayerDetailsView.swift"
-            timestampString = "549776176.205817"
+            timestampString = "549989753.835746"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "144"
-            endingLineNumber = "144"
-            landmarkName = "miniSlider(_:)"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
+            landmarkName = "epishod"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Podcast/Views/Player Detail View/PlayerDetailsView.swift"
+            timestampString = "549989753.8360749"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
+            landmarkName = "setupNowPlayingInfo(url:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
