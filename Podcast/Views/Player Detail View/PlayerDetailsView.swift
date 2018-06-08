@@ -133,8 +133,7 @@ class PlayerDetailView: UIView {
             UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
                 
                 self.maximizedStackView.transform = .identity
-                
-                if translation.y > 80 || velocity.y > 600{
+                if translation.y > 200 || velocity.y > 600{
                     UIApplication.mainTabBarController()?.minimizePlayerDetails()
                 }
             })

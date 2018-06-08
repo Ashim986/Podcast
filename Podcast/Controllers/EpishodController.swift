@@ -10,6 +10,11 @@ import UIKit
 import FeedKit
 
 class EpishodController: UITableViewController {
+
+    private let cellID = "cellID"
+ 
+    var epishods = [Epishod]()
+    
     var podcast : Podcast? {
         didSet{
             navigationItem.title = podcast?.trackName
@@ -37,22 +42,66 @@ class EpishodController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return epishods.isEmpty ? 200 : 0
     }
+ 
     
-    var epishods = [Epishod]()
-    
-    private let cellID = "cellID"
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
+        setupNavigationBarButton()
     }
-    
+
     //MARK:- setup Views
     fileprivate func setupTableView(){
         let nib = UINib(nibName: "EpishodCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: cellID)
         tableView.tableFooterView = UIView()
     }
+
+    fileprivate func setupNavigationBarButton(){
+        // chk if already favorited
+        
+        let savedPodcasts = UserDefaults.standard.savedPodcasts()
+        
+        let hasFavorited =  savedPodcasts.index(where: { (favoritePodcast) -> Bool in
+            return (favoritePodcast.trackName == self.podcast?.trackName && favoritePodcast.artistName == self.podcast?.artistName)
+        }) != nil
+        
+        if hasFavorited {
+            // setup heart item
+            
+            navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "heart") , style: .plain, target: nil, action: nil)
+            
+        }else {
+            
+            navigationItem.rightBarButtonItems = [
+                UIBarButtonItem(title: "Favorite", style: .plain, target: self, action: #selector(handleSaveFavorite)),
+            ]
+        }
+
+    }
     
+    @objc fileprivate func handleSaveFavorite(){
+        
+        guard let podcast = podcast else {return}
+        
+        // 1. transform podcast into Data
+        
+        var listOfPodcasts = UserDefaults.standard.savedPodcasts()
+        listOfPodcasts.append(podcast)
+        let data = NSKeyedArchiver.archivedData(withRootObject: listOfPodcasts)
+        UserDefaults.standard.set(data, forKey: UserDefaults.favoritesPodcastKey)
+        
+        showBatchHighlight()
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "heart"), style: .plain, target: nil, action: nil)
+        
+    }
+
+    fileprivate func showBatchHighlight() {
+        
+        let mainTabBarController = UIApplication.mainTabBarController()
+        mainTabBarController?.viewControllers?[1].tabBarItem.badgeValue = "New"
+        
+    }
     
     //MARK:- UitableView
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -63,7 +112,6 @@ class EpishodController: UITableViewController {
         
         let epishod = epishods[indexPath.row]
         UIApplication.mainTabBarController()?.maximizePlayerDetails(epishod: epishod, playlistEpishods : self.epishods)
-
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

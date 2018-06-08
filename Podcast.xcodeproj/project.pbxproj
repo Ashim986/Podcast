@@ -29,6 +29,8 @@
 		C5E0C07320B21021008AE7AC /* EpishodCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5E0C07120B21021008AE7AC /* EpishodCell.xib */; };
 		C5E0C07520B4F19D008AE7AC /* ExtensionString.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E0C07420B4F19D008AE7AC /* ExtensionString.swift */; };
 		C5E0C07820B5220D008AE7AC /* ExtensionRSSFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E0C07720B5220D008AE7AC /* ExtensionRSSFeed.swift */; };
+		C5E3C22920C884980070322A /* FavoriteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E3C22820C884980070322A /* FavoriteCell.swift */; };
+		C5E3C22B20C8E72F0070322A /* ExtensionUserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E3C22A20C8E72F0070322A /* ExtensionUserDefault.swift */; };
 		C5F62B1120BC77D400260035 /* ExtensionCMTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F62B1020BC77D400260035 /* ExtensionCMTime.swift */; };
 		EE498ACCADB59AC76863FFAB /* Pods_Podcast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 546F5E87E36286D8CEB31780 /* Pods_Podcast.framework */; };
 /* End PBXBuildFile section */
@@ -61,6 +63,8 @@
 		C5E0C07120B21021008AE7AC /* EpishodCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EpishodCell.xib; sourceTree = "<group>"; };
 		C5E0C07420B4F19D008AE7AC /* ExtensionString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionString.swift; sourceTree = "<group>"; };
 		C5E0C07720B5220D008AE7AC /* ExtensionRSSFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionRSSFeed.swift; sourceTree = "<group>"; };
+		C5E3C22820C884980070322A /* FavoriteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCell.swift; sourceTree = "<group>"; };
+		C5E3C22A20C8E72F0070322A /* ExtensionUserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionUserDefault.swift; sourceTree = "<group>"; };
 		C5F62B1020BC77D400260035 /* ExtensionCMTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionCMTime.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -104,7 +108,6 @@
 				9A179C77206DBA7000DA51B0 /* AppDelegate.swift */,
 				9A179C79206DBA7000DA51B0 /* MainTabBarController.swift */,
 				9ACF7E6D208D19A3008D99C2 /* Controllers */,
-				9ACF7E69208C23B3008D99C2 /* FavoritesController.swift */,
 				9A179C7B206DBA7000DA51B0 /* Main.storyboard */,
 				9A179C7E206DBA7000DA51B0 /* Assets.xcassets */,
 				9A179C80206DBA7000DA51B0 /* LaunchScreen.storyboard */,
@@ -119,6 +122,7 @@
 			children = (
 				9ACF7E6B208D199E008D99C2 /* PodcastsSearchController.swift */,
 				C5E0C06C20AE8ED9008AE7AC /* EpishodController.swift */,
+				9ACF7E69208C23B3008D99C2 /* FavoritesController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -153,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				C5DE54502096BB430099F151 /* PodcastCell.xib */,
+				C5E3C22820C884980070322A /* FavoriteCell.swift */,
 				C5DE54522096BE730099F151 /* PodcastCell.swift */,
 				C5E0C07020B21021008AE7AC /* EpishodCell.swift */,
 				C5E0C07120B21021008AE7AC /* EpishodCell.xib */,
@@ -166,6 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				C5E0C07420B4F19D008AE7AC /* ExtensionString.swift */,
+				C5E3C22A20C8E72F0070322A /* ExtensionUserDefault.swift */,
 				C5F62B1020BC77D400260035 /* ExtensionCMTime.swift */,
 				C5E0C07720B5220D008AE7AC /* ExtensionRSSFeed.swift */,
 				C55E098120C4913800C74D95 /* ExtensionUIApplication.swift */,
@@ -338,6 +344,7 @@
 				C54A4F6920C4751200A863F6 /* PlayerDetailView+Gesture.swift in Sources */,
 				C51760E920B8528C001A3C7F /* PlayerDetailsView.swift in Sources */,
 				C5E0C07220B21021008AE7AC /* EpishodCell.swift in Sources */,
+				C5E3C22B20C8E72F0070322A /* ExtensionUserDefault.swift in Sources */,
 				C55E098220C4913800C74D95 /* ExtensionUIApplication.swift in Sources */,
 				C5E0C06D20AE8ED9008AE7AC /* EpishodController.swift in Sources */,
 				9ACF7E6A208C23B3008D99C2 /* FavoritesController.swift in Sources */,
@@ -348,6 +355,7 @@
 				C5DE544E2096A8C00099F151 /* APIService.swift in Sources */,
 				9ACF7E70208D1A53008D99C2 /* Podcast.swift in Sources */,
 				C5DE54532096BE730099F151 /* PodcastCell.swift in Sources */,
+				C5E3C22920C884980070322A /* FavoriteCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
