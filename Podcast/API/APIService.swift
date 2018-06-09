@@ -56,6 +56,40 @@ class APIService {
         }
     
     }
+    
+    func downloadEpisode(episode : Epishod){
+        
+        print("downloading episode",episode.streamUrl)
+        
+        // basic download for steam url
+//        Alamofire.download(episode.streamUrl).downloadProgress { (progress) in
+//            print(progress.fractionCompleted)
+//        }
+        
+        // for saving at different file
+        let downloadRequest = DownloadRequest.suggestedDownloadDestination()
+      
+        Alamofire.download(episode.streamUrl, to: downloadRequest).downloadProgress { (progress) in
+            print(progress.fractionCompleted)
+            
+            }.response { (resp) in
+                // update userdefault with temp file
+                
+                var downloadedEpisode = UserDefaults.standard.savedDownloadedEpishod()
+                guard let index = downloadedEpisode.index(where: { (downloadedEpisode) -> Bool in
+                    return (episode.title == downloadedEpisode.title && episode.author == episode.author)
+                }) else {return}
+                
+                downloadedEpisode[index].fileUrl = resp.destinationURL?.absoluteString ?? ""
+                do {
+                    let data = try JSONEncoder().encode(downloadedEpisode)
+                    UserDefaults.standard.set(data , forKey: UserDefaults.downloadEpisodeKey)
+                   
+                }catch let encodingErr {
+                    print("failed to encode downloaded episodes with file url updates", encodingErr)
+                }
+        }
+    }
 }
 
 struct SearchResults : Decodable {

@@ -40,9 +40,28 @@ class PlayerDetailView: UIView {
     }()
     
     fileprivate func playEpishod(){
-        let stream = epishod.streamUrl.toSecureHTTPS()
-        guard let url = URL(string: stream) else {return}
-        let playerItem = AVPlayerItem(url: url)
+        if epishod.fileUrl != nil {
+            playEpisodeFromFileUrl()
+            
+        }else  {
+            let stream = epishod.streamUrl.toSecureHTTPS()
+            guard let url = URL(string: stream) else {return}
+            let playerItem = AVPlayerItem(url: url)
+            player.replaceCurrentItem(with: playerItem)
+            player.play()
+        }
+    
+    }
+    
+    fileprivate func playEpisodeFromFileUrl() {
+        
+        guard let fileURL = URL(string: epishod.fileUrl ?? "") else {return}
+        let fileLocation = fileURL.lastPathComponent
+        print(fileLocation)
+        guard var trueLocation = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {return}
+        trueLocation.appendPathComponent(fileLocation)
+        
+        let playerItem = AVPlayerItem(url: trueLocation)
         player.replaceCurrentItem(with: playerItem)
         player.play()
         

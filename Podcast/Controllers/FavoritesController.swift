@@ -22,12 +22,9 @@ class FavoritesController: UICollectionViewController, UICollectionViewDelegateF
         super.viewWillAppear(true)
         self.podcasts = UserDefaults.standard.savedPodcasts()
         self.collectionView?.reloadData()
-        
         UIApplication.mainTabBarController()?.viewControllers?[1].tabBarItem.badgeValue = nil
-        
     }
-    
-    
+   
     fileprivate func setupCollectionView(){
         collectionView?.backgroundColor = .white
         collectionView?.register(FavoriteCell.self , forCellWithReuseIdentifier: cellID)

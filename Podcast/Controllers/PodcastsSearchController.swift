@@ -68,7 +68,7 @@ class PodcastsSearchController: UITableViewController, UISearchBarDelegate {
         let containerView = setupHeaderViewAndConstraint(tableView: tableView)
         return containerView
     }
-    
+  
     let currentlySearchingLabel : UILabel = {
         let label = UILabel()
         label.text = "Currently Searching"

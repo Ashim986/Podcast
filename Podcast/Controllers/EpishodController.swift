@@ -108,6 +108,29 @@ class EpishodController: UITableViewController {
         return epishods.count
     }
     
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
+        let downloadController = DownloadController()
+        let hasDownloaded = downloadController.episodes.contains { (downloadEpisode) -> Bool in
+            return downloadEpisode.title == self.epishods[indexPath.row].title
+        }
+        if !hasDownloaded {
+            UIApplication.mainTabBarController()?.viewControllers?[2].tabBarItem.badgeValue = "New"
+        }else {
+            UIApplication.mainTabBarController()?.viewControllers?[2].tabBarItem.badgeValue = nil
+        }
+        
+        let downloadAction = UITableViewRowAction(style: .normal, title: "Download") { (_, _) in
+            
+            let episode = self.epishods[indexPath.row]
+            UserDefaults.standard.downloadEpisode(episode: episode)
+        
+            APIService.shared.downloadEpisode(episode: episode)
+        }
+      
+        return [downloadAction]
+    }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let epishod = epishods[indexPath.row]
