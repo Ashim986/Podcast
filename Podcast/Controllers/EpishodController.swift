@@ -31,18 +31,7 @@ class EpishodController: UITableViewController {
             }
         }
     }
-    
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
-        activityIndicatorView.color = .darkGray
-        activityIndicatorView.startAnimating()
-        return activityIndicatorView
-    }
-    
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return epishods.isEmpty ? 200 : 0
-    }
- 
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -104,6 +93,20 @@ class EpishodController: UITableViewController {
     }
     
     //MARK:- UitableView
+   
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+        activityIndicatorView.color = .darkGray
+        activityIndicatorView.startAnimating()
+        return activityIndicatorView
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return epishods.isEmpty ? 200 : 0
+    }
+    
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return epishods.count
     }
@@ -114,21 +117,25 @@ class EpishodController: UITableViewController {
         let hasDownloaded = downloadController.episodes.contains { (downloadEpisode) -> Bool in
             return downloadEpisode.title == self.epishods[indexPath.row].title
         }
+        
         if !hasDownloaded {
             UIApplication.mainTabBarController()?.viewControllers?[2].tabBarItem.badgeValue = "New"
+            let downloadAction = UITableViewRowAction(style: .normal, title: "Download") { (_, _) in
+                
+                let episode = self.epishods[indexPath.row]
+                UserDefaults.standard.downloadEpisode(episode: episode)
+                
+                APIService.shared.downloadEpisode(episode: episode)
+            }
+            return [downloadAction]
         }else {
             UIApplication.mainTabBarController()?.viewControllers?[2].tabBarItem.badgeValue = nil
-        }
-        
-        let downloadAction = UITableViewRowAction(style: .normal, title: "Download") { (_, _) in
             
-            let episode = self.epishods[indexPath.row]
-            UserDefaults.standard.downloadEpisode(episode: episode)
-        
-            APIService.shared.downloadEpisode(episode: episode)
         }
-      
-        return [downloadAction]
+        let tableVeiwRowAction = UITableViewRowAction(style: .normal, title: "Already Downloaded") { (_, _) in
+            
+        }
+        return [tableVeiwRowAction]
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

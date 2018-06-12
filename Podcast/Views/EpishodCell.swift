@@ -32,6 +32,7 @@ class EpishodCell: UITableViewCell {
             descriptionLabel.numberOfLines = 2
         }
     }
+    @IBOutlet weak var downloadPercentage: UILabel!
     
     @IBOutlet weak var titleLabel: UILabel! {
         didSet{

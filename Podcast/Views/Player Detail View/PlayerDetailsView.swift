@@ -57,7 +57,6 @@ class PlayerDetailView: UIView {
         
         guard let fileURL = URL(string: epishod.fileUrl ?? "") else {return}
         let fileLocation = fileURL.lastPathComponent
-        print(fileLocation)
         guard var trueLocation = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {return}
         trueLocation.appendPathComponent(fileLocation)
         

@@ -15,6 +15,8 @@ class APIService {
     // singlton
     static let shared = APIService()
     let baseItunesSearchURL = "https://itunes.apple.com/search"
+    typealias downloadCompleteTuple = (fileUrl : String, episodeTitle : String)
+    
     
     func fetchPodcasts(searchText : String , completionHandler : @escaping ([Podcast]) -> () ){
         let paramaters = ["term": searchText , "media" : "podcast"]
@@ -59,8 +61,6 @@ class APIService {
     
     func downloadEpisode(episode : Epishod){
         
-        print("downloading episode",episode.streamUrl)
-        
         // basic download for steam url
 //        Alamofire.download(episode.streamUrl).downloadProgress { (progress) in
 //            print(progress.fractionCompleted)
@@ -70,10 +70,14 @@ class APIService {
         let downloadRequest = DownloadRequest.suggestedDownloadDestination()
       
         Alamofire.download(episode.streamUrl, to: downloadRequest).downloadProgress { (progress) in
-            print(progress.fractionCompleted)
+            
+            NotificationCenter.default.post(name: .downloadProgress, object: nil, userInfo: ["title" : episode.title , "progress" : progress.fractionCompleted])
             
             }.response { (resp) in
                 // update userdefault with temp file
+                let episodeDownloadComplete = downloadCompleteTuple(fileUrl : resp.destinationURL?.absoluteString ?? "" , episode.title)
+                
+                NotificationCenter.default.post(name: .downloadComplete, object: episodeDownloadComplete)
                 
                 var downloadedEpisode = UserDefaults.standard.savedDownloadedEpishod()
                 guard let index = downloadedEpisode.index(where: { (downloadedEpisode) -> Bool in

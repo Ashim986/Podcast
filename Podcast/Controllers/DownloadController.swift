@@ -23,6 +23,7 @@ class DownloadController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
+        setupObserver()
     }
     
     
@@ -30,6 +31,38 @@ class DownloadController: UITableViewController {
         let epishodNib = UINib(nibName: "EpishodCell", bundle: nil)
         tableView.register(epishodNib, forCellReuseIdentifier: cellID)
         
+    }
+    
+    fileprivate func setupObserver(){
+        NotificationCenter.default.addObserver(self, selector: #selector(handleDownloadProgress), name: .downloadProgress, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleDownloadComplete), name: .downloadComplete, object: nil)
+        
+    }
+    
+    
+    @objc fileprivate func handleDownloadProgress(notification : Notification){
+        
+        guard let userInfo = notification.userInfo as? [String : Any] else {return}
+        guard let progress = userInfo["progress"] as? Double else {return}
+        guard let title = userInfo["title"] as? String else {return}
+        guard let index = self.episodes.index(where: { $0.title == title }) else { return }
+        guard let cell = tableView.cellForRow(at: IndexPath(row: index, section: 0)) as? EpishodCell else { return }
+        cell.downloadPercentage.text = "\(Int(progress * 100))%"
+        cell.downloadPercentage.isHidden = false
+        if progress == 1 {
+            cell.downloadPercentage.isHidden = true
+        }
+        
+    }
+    
+    @objc fileprivate func handleDownloadComplete(notification : Notification){
+        
+        guard let episodeDownloadComplete = notification.object as? APIService.downloadCompleteTuple else {return}
+        guard let index = self.episodes.index(where : {
+            $0.title == episodeDownloadComplete.episodeTitle
+        }) else {return}
+        self.episodes[index].fileUrl = episodeDownloadComplete.fileUrl
+      
     }
     
     // MARK:- TableView
@@ -47,7 +80,6 @@ class DownloadController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("launch episode player")
  
         let episode = episodes[indexPath.row]
         if episode.fileUrl != nil {
